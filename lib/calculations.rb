@@ -1,3 +1,4 @@
+# lib/calculations.rb
 class Calcs
   def operation(roll, operation_value, operator)
     case operator

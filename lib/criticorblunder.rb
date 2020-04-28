@@ -1,3 +1,4 @@
+# lib/criticorblunder.rb
 class Criticblunder
   @@critic = [[nil, nil, 4], [nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [20, 20, 20], [1, 5, 100]]
   @@blunder = [[nil, nil, 4], [nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [1, 1, 20], [95, 100, 100]]

@@ -1,3 +1,4 @@
+# lib/rolls.rb
 class Rolls
   @@crbl = Criticblunder.new
   @@calc = Calcs.new
