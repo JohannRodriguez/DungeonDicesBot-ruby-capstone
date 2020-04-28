@@ -2,7 +2,7 @@
 
 > This is a capstone project for Microverse, it is a bot for telegram who roll different type of dices, it has different options like comparing the rolls to a number or do some maths
 
-![screenshot](./app_screenshot.png)
+![screenshot](./screenshot.png)
 
 ## Built With
 
