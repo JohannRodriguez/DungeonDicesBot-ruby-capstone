@@ -3,7 +3,7 @@ class Rolls
   @@calc = Calcs.new
   def single_roll(dice_value)
     roll = rand(1..dice_value)
-    return "D#{dice_value} rolled, your roll is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}"
+    "D#{dice_value} rolled, your roll is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}"
   end
 
   def multiple_rolls(dice_value, dices)
@@ -23,11 +23,11 @@ class Rolls
       rolls_comparison_array = ["D#{dice_value} #{comparer_text} than #{comparison}, results:"]
       multiple.times do
         roll = rand(1..dice_value)
-        rolls_comparison_array.push("\n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}" )
+        rolls_comparison_array.push("\n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}")
       end
       return rolls_comparison_array.join
     end
-    return "D#{dice_value} #{comparer_text} than #{comparison}, your roll is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}"
+    "D#{dice_value} #{comparer_text} than #{comparison}, your roll is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}"
   end
 
   def compare_roll_with_math(dice_value, comparison, comparer, operation_value, operator, multiple = nil)
@@ -70,7 +70,6 @@ class Rolls
     when 'bgt'
       cm_txt_asg = 'bigger'
     end
-
     case op
     when 'add'
       op_txt_asg = 'plus' if op == 'add'
@@ -85,6 +84,6 @@ class Rolls
       op_txt_asg = 'divided by' if op == 'div'
       op_sym_asg = '/' if op == 'div'
     end
-    return [cm_txt_asg, op_txt_asg, op_sym_asg]
+    [cm_txt_asg, op_txt_asg, op_sym_asg]
   end
 end

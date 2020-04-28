@@ -49,6 +49,8 @@ Style/IfUnlessModifierOfIfUnless:
   Enabled: false
 Style/GuardClause:
   Enabled: false
+Style/Next:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
