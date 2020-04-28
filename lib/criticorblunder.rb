@@ -79,4 +79,28 @@ class Criticblunder
     return " CRITIC ROLL!" if @@critic[dice_type_index][0] != nil and roll.between?(@@critic[dice_type_index][0], @@critic[dice_type_index][1])
     return " BLUNDER" if @@blunder[dice_type_index][0] != nil and roll.between?(@@blunder[dice_type_index][0], @@blunder[dice_type_index][1])
   end
+
+  def new_cr_bl(dice)
+    @@critic.push([nil, nil, dice])
+    @@blunder.push([nil, nil, dice])
+    dice_index(nil, dice)
+  end
+
+  def dice_index(dice_type, new_dice = nil)
+    if new_dice.is_a?(Integer)
+       @@dice_index_array.push([new_dice, @@dice_index_array.length])
+       accepted_dices(nil, new_dice)
+       return "Dice succesfully added, you can use it as the rest of the dices using /d#{new_dice} with any variation to add diferent cualities to the roll"
+    end
+    @@dice_index_array.length.times { |i| return @@dice_index_array[i][1] if @@dice_index_array[i][0] == dice_type } unless dice_type.nil?
+  end
+
+  def accepted_dices(dice, new_dice = nil)
+    if new_dice.is_a?(Integer)
+      @@valid_dice.push(new_dice)
+      return
+    end
+    return true if @@valid_dice.include?(dice) and dice != nil
+    return false if dice != nil
+  end
 end
