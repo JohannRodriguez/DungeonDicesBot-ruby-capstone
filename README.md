@@ -1,73 +1,42 @@
-# Project Name
+# DungeonDicesBot
 
-> One paragraph statement about the project.
+> This is a capstone project for Microverse, it is a bot for telegram who roll different type of dices, it has different options like comparing the rolls to a number or do some maths
 
 ![screenshot](./app_screenshot.png)
 
-Additional description about the project and its features.
-
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- Ruby
+- Botfather
+- Rspec
+- Heroku
+- Atom
+- Rubocop
 
-## Live Demo
+## Check the bot yourself!
 
-[Live Demo Link](https://livedemo.com)
-
+[Find it here:](https://livedemo.com)
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+**Open Telegram and look for DungeonDicesBot**
+**Start the bot and type /help to see all the commands, it as different options**
+**The only requisite is to have Telegram**
 
 ## Authors
 
-👤 **Author1**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
-
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
-
-## 🤝 Contributing
+👤 **Johann Rodríguez**
+- Github: [@JohannRodriguez](https://github.com/JohannRodriguez)
+- Twitter: [@BSapce](https://https://twitter.com/BSapce)
+- Linkedin: [Johann Rodríguez](https://www.linkedin.com/in/johann-alonso-rodr%C3%ADguez-v%C3%A1zquez-25b07719a/)
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/JohannRodriguez/DungeonDicesBot-ruby-capstone/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
