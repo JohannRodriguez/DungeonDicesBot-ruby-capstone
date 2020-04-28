@@ -6,7 +6,7 @@ token = '1275379380:AAEfkC8K31fMnVPdeEYMSX7hOFdQR-Asecs'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    crbl = Criticblunder
+    crbl = Criticblunder.new
     roll = Rolls.new
     compare_with_math = message.text.split(/(\s|smt|bgt|add|sub|mult|div)/)
     op = message.text.split(/(\s|add|sub|mult|div)/)
