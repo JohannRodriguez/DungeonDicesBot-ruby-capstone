@@ -1,6 +1,8 @@
 class Criticblunder
   @@critic = [[nil, nil, 4],[nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [20, 20, 20], [1, 5, 100]]
   @@blunder = [[nil, nil, 4],[nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [1, 1, 20], [95, 100, 100]]
+  @@dice_index_array =[[4, 0],[6, 1],[8, 2],[10, 3],[20, 4],[100, 5]]
+  @@valid_dice = [4, 6, 8, 10, 20, 100]
   def cr_bl_assign(dice_type, values, type_of_assign)
     return "Invalid assigner, try to use either 'cr' or 'bl'" unless type_of_assign == 'cr' or type_of_assign == 'bl'
     dice_type_index = dice_index(dice_type)
@@ -59,5 +61,16 @@ class Criticblunder
       assigner_text_2_validation = 'critic'
     end
     return [assigner_1_validation, assigner_2_validation, assigner_text_1_validation, assigner_text_2_validation]
+  end
+
+  def cr_bl_status(dice_type, type_of_assign)
+    dice_type_index = dice_index(dice_type)
+    assigner = @@critic if type_of_assign == 'cr'
+    assigner = @@blunder if type_of_assign == 'bl'
+    type_of_assign_text = 'critic' if type_of_assign == 'cr'
+    type_of_assign_text = 'blunder' if type_of_assign == 'bl'
+    return "There is no range or value assigned for D#{dice_type} #{type_of_assign_text} roll" if assigner[dice_type_index][0].nil?
+    return "The value assigned for D#{dice_type} #{type_of_assign_text} is #{assigner[dice_type_index][0]}" if assigner[dice_type_index][0] == assigner[dice_type_index][1]
+    return "The #{type_of_assign_text} range for D#{dice_type} goes from #{assigner[dice_type_index][0]} to #{assigner[dice_type_index][1]}"
   end
 end
