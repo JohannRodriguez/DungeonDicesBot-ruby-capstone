@@ -17,8 +17,9 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
-  ExcludedMethods: ['describe']
-  Max: 30
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
 Metrics/ParameterLists:
   Enabled: false
 Metrics/CyclomaticComplexity:
@@ -52,6 +53,10 @@ Style/IfUnlessModifierOfIfUnless:
 Style/GuardClause:
   Enabled: false
 Style/Next:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/BlockComments:
   Enabled: false
 
 Layout/HashAlignment:
