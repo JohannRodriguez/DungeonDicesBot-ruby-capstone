@@ -73,4 +73,10 @@ class Criticblunder
     return "The value assigned for D#{dice_type} #{type_of_assign_text} is #{assigner[dice_type_index][0]}" if assigner[dice_type_index][0] == assigner[dice_type_index][1]
     return "The #{type_of_assign_text} range for D#{dice_type} goes from #{assigner[dice_type_index][0]} to #{assigner[dice_type_index][1]}"
   end
+
+  def cr_bl_roll(dice_type, roll)
+    dice_type_index = dice_index(dice_type)
+    return " CRITIC ROLL!" if @@critic[dice_type_index][0] != nil and roll.between?(@@critic[dice_type_index][0], @@critic[dice_type_index][1])
+    return " BLUNDER" if @@blunder[dice_type_index][0] != nil and roll.between?(@@blunder[dice_type_index][0], @@blunder[dice_type_index][1])
+  end
 end
