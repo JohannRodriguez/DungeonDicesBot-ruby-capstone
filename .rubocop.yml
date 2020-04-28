@@ -1,0 +1,78 @@
+AllCops:
+  Exclude:
+    - "README.md"
+    - "Guardfile"
+    - "Rakefile"
+
+  DisplayCopNames: true
+
+Layout/LineLength:
+  Enabled: false
+Layout/MultilineOperationIndentation:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 25
+Metrics/AbcSize:
+  Max: 50
+Metrics/ClassLength:
+  Max: 150
+Metrics/BlockLength:
+  ExcludedMethods: ['describe']
+  Max: 30
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/EachForSimpleLoop:
+  Enabled: false
+Style/AndOr:
+  Enabled: false
+Style/DefWithParentheses:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+Style/ClassVars:
+  Enabled: false
+Style/MultipleComparison:
+  Enabled: false
+Style/MultilineIfModifier:
+  Enabled: false
+Style/NestedModifier:
+  Enabled: false
+Style/IfUnlessModifierOfIfUnless:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/Next:
+  Enabled: false
+
+Layout/HashAlignment:
+  EnforcedColonStyle: key
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+Lint/RaiseException:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Lint/UnusedMethodArgument:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
