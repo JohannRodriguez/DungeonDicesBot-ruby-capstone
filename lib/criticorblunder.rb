@@ -24,7 +24,6 @@ class Criticblunder
 
     return "The new value forD#{dice_type} #{assigner_text_1} is now #{assigner_1[dice_type_index][0]}" if assigner_1[dice_type_index][0] == assigner_1[dice_type_index][1]
     "The new #{assigner_text_1} range for D#{dice_type} goes from #{assigner_1[dice_type_index][0]} to #{assigner_1[dice_type_index][1]}"
-
   end
 
   def range_validation(assigner_2, assigner_1, assigner_text_2, assigner_text_1, new_values, dice_type_index)
@@ -85,9 +84,9 @@ class Criticblunder
 
   def cr_bl_roll(dice_type, roll)
     dice_type_index = dice_index(dice_type)
-    return " CRITIC ROLL!" if !@@critic[dice_type_index][0].nil? and roll.between?(@@critic[dice_type_index][0], @@critic[dice_type_index][1])
+    return ' CRITIC ROLL!' if !@@critic[dice_type_index][0].nil? and roll.between?(@@critic[dice_type_index][0], @@critic[dice_type_index][1])
 
-    return " BLUNDER" if !@@blunder[dice_type_index][0].nil? and roll.between?(@@blunder[dice_type_index][0], @@blunder[dice_type_index][1])
+    return ' BLUNDER' if !@@blunder[dice_type_index][0].nil? and roll.between?(@@blunder[dice_type_index][0], @@blunder[dice_type_index][1])
   end
 
   def new_cr_bl(dice)
@@ -111,6 +110,6 @@ class Criticblunder
       return
     end
     return true if @@valid_dice.include?(dice) and !dice.nil?
-    return false if !dice.nil?
+    return false unless !dice.nil?
   end
 end

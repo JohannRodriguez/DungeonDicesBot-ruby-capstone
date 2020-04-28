@@ -60,29 +60,29 @@ class Rolls
       end
       return multiple_operator_array.join
     end
-    return "D#{dice_value} #{operator_text} #{operation_value}, your result is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)} #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}"
+    "D#{dice_value} #{operator_text} #{operation_value}, your result is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)} #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}"
   end
 
-  def assigners(cm_txt = nil, op = nil)
+  def assigners(cm_txt = nil, opr = nil)
     case cm_txt
     when 'smt'
       cm_txt_asg = 'smaller'
     when 'bgt'
       cm_txt_asg = 'bigger'
     end
-    case op
+    case opr
     when 'add'
-      op_txt_asg = 'plus' if op == 'add'
-      op_sym_asg = '+' if op == 'add'
+      op_txt_asg = 'plus' if opr == 'add'
+      op_sym_asg = '+' if opr == 'add'
     when 'sub'
-      op_txt_asg = 'minus' if op == 'sub'
-      op_sym_asg = '-' if op == 'sub'
+      op_txt_asg = 'minus' if opr == 'sub'
+      op_sym_asg = '-' if opr == 'sub'
     when 'mult'
-      op_txt_asg = 'times' if op == 'mult'
-      op_sym_asg = '*' if op == 'mult'
+      op_txt_asg = 'times' if opr == 'mult'
+      op_sym_asg = '*' if opr == 'mult'
     when 'div'
-      op_txt_asg = 'divided by' if op == 'div'
-      op_sym_asg = '/' if op == 'div'
+      op_txt_asg = 'divided by' if opr == 'div'
+      op_sym_asg = '/' if opr == 'div'
     end
     [cm_txt_asg, op_txt_asg, op_sym_asg]
   end

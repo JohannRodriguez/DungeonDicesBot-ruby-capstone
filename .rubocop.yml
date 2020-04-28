@@ -8,6 +8,8 @@ AllCops:
 
 Layout/LineLength:
   Enabled: false
+Layout/MultilineOperationIndentation:
+  Enabled: false
 Metrics/MethodLength:
   Max: 20
 Metrics/AbcSize:
@@ -62,6 +64,8 @@ Layout/MultilineMethodCallIndentation:
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
+  Enabled: false
+Lint/UnusedMethodArgument:
   Enabled: false
 Style/HashEachMethods:
   Enabled: false
