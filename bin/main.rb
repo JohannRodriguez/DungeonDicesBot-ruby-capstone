@@ -6,8 +6,8 @@ token = '1275379380:AAEfkC8K31fMnVPdeEYMSX7hOFdQR-Asecs'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    crbl = Criticblunder.new
-    calc = Calcs.new
+    crbl = Criticblunder.
+
     roll = Rolls.new
     compare_with_math = message.text.split(/(\s|smt|bgt|add|sub|mult|div)/)
     op = message.text.split(/(\s|add|sub|mult|div)/)
@@ -16,8 +16,7 @@ Telegram::Bot::Client.run(token) do |bot|
     one_roll = message.text.split(/(d)/)
     critic_blunder_new = message.text.split(/(eql)/)
     crblst = message.text.split(/(st)/)
-    new_dice = message.text.split((/(\s|n|d|eql)/))
-
+    new_dice = message.text.split(/(\s|n|d|eql)/)
     if compare_with_math.length == 5 and compare_with_math[3] == 'smt' or compare_with_math[3] == 'bgt'
       if compare_with_math[1] == 'add' or compare_with_math[1] == 'sub' or compare_with_math[1] == 'mult' or compare_with_math[1] == 'div'
         dice = compare_with_math[0].split(/(d)/)
@@ -31,28 +30,28 @@ Telegram::Bot::Client.run(token) do |bot|
         end
       end
     elsif op.length == 3 and op[1] == 'add' or op[1] == 'sub' or op[1] == 'mult' or op[1] == 'div'
-        dice = op[0].split(/(d)/)
-        if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
-          mult_op = op[2].split(/(tm)/)
-          if mult_op.length == 3
-            bot.api.send_message(chat_id: message.chat.id, text: roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i))
-          elsif mult_op.length == 1
-            bot.api.send_message(chat_id: message.chat.id, text: roll.roll_with_operation(dice[2].to_i, op[2].to_i, op[1]))
-          end
-        end
-      elsif compare.length == 3 and compare[1] == 'smt' or compare[1] == 'bgt'
-        dice = compare[0].split(/(d)/)
-        if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
-          compare_multiple = compare[2].split(/(tm)/)
-          if compare_multiple.length == 3
-            bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll(dice[2].to_i, compare_multiple[0].to_i, compare[1], compare_multiple[2].to_i))
-          elsif compare_multiple.length == 1
-            bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll(dice[2].to_i, compare[2].to_i, compare[1]))
+      dice = op[0].split(/(d)/)
+      if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
+        mult_op = op[2].split(/(tm)/)
+        if mult_op.length == 3
+          bot.api.send_message(chat_id: message.chat.id, text: roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i))
+        elsif mult_op.length == 1
+          bot.api.send_message(chat_id: message.chat.id, text: roll.roll_with_operation(dice[2].to_i, op[2].to_i, op[1]))
         end
       end
-    elsif critic_blunder_new[1] == "eql" and critic_blunder_new.length == 3
+    elsif compare.length == 3 and compare[1] == 'smt' or compare[1] == 'bgt'
+      dice = compare[0].split(/(d)/)
+      if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
+        compare_multiple = compare[2].split(/(tm)/)
+        if compare_multiple.length == 3
+          bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll(dice[2].to_i, compare_multiple[0].to_i, compare[1], compare_multiple[2].to_i))
+        elsif compare_multiple.length == 1
+          bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll(dice[2].to_i, compare[2].to_i, compare[1]))
+        end
+      end
+    elsif critic_blunder_new[1] == 'eql' and critic_blunder_new.length == 3
       dice = critic_blunder_new[0].split(/(\s|d|n)/)
-      if dice[0] == '/' and  dice[1] == 'd' and dice[3] == 'n' and crbl.accepted_dices(dice[2].to_i) and dice.length == 5
+      if dice[0] == '/' and dice[1] == 'd' and dice[3] == 'n' and crbl.accepted_dices(dice[2].to_i) and dice.length == 5
         if dice[4] == 'cr' or dice[4] == 'bl'
           bot.api.send_message(chat_id: message.chat.id, text: crbl.cr_bl_assign(dice[2].to_i, critic_blunder_new[2], dice[4]))
         end
@@ -67,7 +66,7 @@ Telegram::Bot::Client.run(token) do |bot|
       end
     elsif various_rolls[1] == 'tm' and various_rolls.length == 3
       dices = various_rolls[0].split(/(d)/)
-      if dices[0] == '/' and  dices[1] == 'd' and crbl.accepted_dices(dices[2].to_i) and dices.length == 3
+      if dices[0] == '/' and dices[1] == 'd' and crbl.accepted_dices(dices[2].to_i) and dices.length == 3
         bot.api.send_message(chat_id: message.chat.id, text: roll.multiple_rolls(dices[2].to_i, various_rolls[2].to_i))
       end
     elsif one_roll[0] == '/' and one_roll[1] == 'd' and crbl.accepted_dices(one_roll[2].to_i) and one_roll.length == 3
@@ -82,7 +81,7 @@ Telegram::Bot::Client.run(token) do |bot|
 
     case message.text
     when '/start'
-      bot.api.send_message(chat_id: message.chat.id, text: "This is an app to roll dices equiped for the needs of table roll playing games. Use /help to se the commands")
+      bot.api.send_message(chat_id: message.chat.id, text: 'This is an app to roll dices equiped for the needs of table roll playing games. Use /help to se the commands')
     when '/glosary'
       bot.api.send_message(chat_id: message.chat.id, text: "'d' stands for dice
 'bgt' stands for bigger roll_with_operation

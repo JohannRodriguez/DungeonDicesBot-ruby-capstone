@@ -20,16 +20,16 @@ describe Calcs do
 
   describe '#compare' do
     it "If the third argument is 'smt' it will return a succes message if the frist argument is smaller than the second" do
-        expect(calc.compare(5, 10, 'smt')).to eql('Succes!')
+      expect(calc.compare(5, 10, 'smt')).to eql('Succes!')
     end
     it "If the third argument is 'smt' it will return a failure message if the failure argument is bigger than the second" do
-        expect(calc.compare(15, 10, 'smt')).to eql('Failure')
+      expect(calc.compare(15, 10, 'smt')).to eql('Failure')
     end
     it "If the third argument is 'bgt' it will return a failure message if the first argument is smaller than the second" do
-        expect(calc.compare(5, 10, 'bgt')).to eql('Failure')
+      expect(calc.compare(5, 10, 'bgt')).to eql('Failure')
     end
     it "If the third argument is 'bgt' it will return a succes message if the first argument is bigger than the second" do
-        expect(calc.compare(15, 10, 'bgt')).to eql('Succes!')
+      expect(calc.compare(15, 10, 'bgt')).to eql('Succes!')
     end
   end
 end
