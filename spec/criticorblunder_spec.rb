@@ -8,7 +8,7 @@ describe Criticblunder do
       expect(crbl.cr_bl_assign(4, '3to4', 'vr')).to eql("Invalid assigner, try to use either 'cr' or 'bl'")
     end
     it 'If the arguments are valid and the second one has two numbers, returns a message saying the faces of the dice we passed, if is critic or blunder and the range' do
-      expect(crbl.cr_bl_assign(4, '3to4', 'cr')).to eql("The new critic range for D4 goes from 3 to 4")
+      expect(crbl.cr_bl_assign(4, '3to4', 'cr')).to eql('The new critic range for D4 goes from 3 to 4')
     end
     it 'If the arguments ar valid and the second one is one number, returns a msesage saying the faces of the dice we passed, if is critic or blunder and the value' do
       expect(crbl.cr_bl_assign(4, '4', 'cr')).to eql('The new value for D4 critic is now 4')
