@@ -13,10 +13,6 @@
 - Atom
 - Rubocop
 
-## Check the bot yourself!
-
-[Find it here:](https://livedemo.com)
-
 ## Getting Started
 
 **Open Telegram and look for DungeonDicesBot**
