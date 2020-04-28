@@ -2,13 +2,13 @@ class Calcs
   def operation(roll, operation_value, operator)
     case operator
     when 'add'
-      return roll + operation_value
+      roll + operation_value
     when 'sub'
-      return roll - operation_value
+      roll - operation_value
     when 'mult'
-      return roll * operation_value
+      roll * operation_value
     when 'div'
-      return roll.to_f / operation_value.to_f
+      roll.to_f / operation_value
     end
   end
 

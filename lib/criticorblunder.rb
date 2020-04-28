@@ -1,10 +1,11 @@
 class Criticblunder
-  @@critic = [[nil, nil, 4],[nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [20, 20, 20], [1, 5, 100]]
-  @@blunder = [[nil, nil, 4],[nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [1, 1, 20], [95, 100, 100]]
-  @@dice_index_array =[[4, 0],[6, 1],[8, 2],[10, 3],[20, 4],[100, 5]]
+  @@critic = [[nil, nil, 4], [nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [20, 20, 20], [1, 5, 100]]
+  @@blunder = [[nil, nil, 4], [nil, nil, 6], [nil, nil, 8], [nil, nil, 8], [1, 1, 20], [95, 100, 100]]
+  @@dice_index_array = [[4, 0], [6, 1], [8, 2], [10, 3], [20, 4], [100, 5]]
   @@valid_dice = [4, 6, 8, 10, 20, 100]
   def cr_bl_assign(dice_type, values, type_of_assign)
     return "Invalid assigner, try to use either 'cr' or 'bl'" unless type_of_assign == 'cr' or type_of_assign == 'bl'
+
     dice_type_index = dice_index(dice_type)
     assigners = assigners_validation(type_of_assign)
     assigner_1 = assigners[0]
@@ -12,12 +13,17 @@ class Criticblunder
     assigner_text_1 = assigners[2]
     assigner_text_2 = assigners[3]
     return value_none(values, assigner_1, assigner_text_1, dice_type, dice_type_index) if values == 'none'
+
     new_values = values.split('to')
     return 'You can only assign a maximum of two values' if new_values.length > 2
+
     return range_validation(assigner_2, assigner_1, assigner_text_2, assigner_text_1, new_values, dice_type_index) unless assigner_2[dice_type_index][0].nil?
+
     set_values_for_assigner(assigner_1, new_values, dice_type_index)
     return "Your #{assigner_text_1} roll must be within a range from 1 to #{assigner_1[dice_type_index][2]}" if assigner_1[dice_type_index][0].nil? or
-    return "The new value for D#{dice_type} #{assigner_text_1} is now #{assigner_1[dice_type_index][0]}" if assigner_1[dice_type_index][0] == assigner_1[dice_type_index][1]
+
+    return "The new value for
+     D#{dice_type} #{assigner_text_1} is now #{assigner_1[dice_type_index][0]}" if assigner_1[dice_type_index][0] == assigner_1[dice_type_index][1]
     return "The new #{assigner_text_1} range for D#{dice_type} goes from #{assigner_1[dice_type_index][0]} to #{assigner_1[dice_type_index][1]}"
   end
 
@@ -25,6 +31,7 @@ class Criticblunder
     new_values.length.times do |i|
       if new_values[i].to_i.between?(assigner_2[dice_type_index][0], assigner_2[dice_type_index][1])
         return "#{assigner_text_2.capitalize} value is #{assigner_2[dice_type_index][0]}. You can't assign #{new_values[i].to_i} to #{assigner_text_1}" if assigner_1[dice_type_index][0] == assigner_1[dice_type_index][1]
+
         return "#{assigner_text_2.capitalize} range goes from #{assigner_2[dice_type_index][0]} to #{assigner_2[dice_type_index][1]}. You can't assign #{new_values[i].to_i} to #{assigner_text_1}"
       end
     end
@@ -70,13 +77,16 @@ class Criticblunder
     type_of_assign_text = 'critic' if type_of_assign == 'cr'
     type_of_assign_text = 'blunder' if type_of_assign == 'bl'
     return "There is no range or value assigned for D#{dice_type} #{type_of_assign_text} roll" if assigner[dice_type_index][0].nil?
+
     return "The value assigned for D#{dice_type} #{type_of_assign_text} is #{assigner[dice_type_index][0]}" if assigner[dice_type_index][0] == assigner[dice_type_index][1]
+
     return "The #{type_of_assign_text} range for D#{dice_type} goes from #{assigner[dice_type_index][0]} to #{assigner[dice_type_index][1]}"
   end
 
   def cr_bl_roll(dice_type, roll)
     dice_type_index = dice_index(dice_type)
     return " CRITIC ROLL!" if @@critic[dice_type_index][0] != nil and roll.between?(@@critic[dice_type_index][0], @@critic[dice_type_index][1])
+
     return " BLUNDER" if @@blunder[dice_type_index][0] != nil and roll.between?(@@blunder[dice_type_index][0], @@blunder[dice_type_index][1])
   end
 
@@ -101,6 +111,7 @@ class Criticblunder
       return
     end
     return true if @@valid_dice.include?(dice) and dice != nil
+    
     return false if dice != nil
   end
 end
