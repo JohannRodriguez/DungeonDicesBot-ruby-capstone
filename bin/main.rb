@@ -22,9 +22,9 @@ Telegram::Bot::Client.run(token) do |bot|
         if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
           compare_multiple_with_math = compare_with_math[4].split(/(tm)/)
           if compare_multiple_with_math.length == 3
-            bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll_with_math(dice[2].to_i, compare_with_math[4].to_i, compare_with_math[3], compare_with_math[2].to_i, compare_with_math[1], compare_multiple_with_math[2].to_i))
+            text_call = roll.compare_roll_with_math(dice[2].to_i, compare_with_math[4].to_i, compare_with_math[3], compare_with_math[2].to_i, compare_with_math[1], compare_multiple_with_math[2].to_i)
           elsif compare_multiple_with_math.length == 1
-            bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll_with_math(dice[2].to_i, compare_with_math[4].to_i, compare_with_math[3], compare_with_math[2].to_i, compare_with_math[1]))
+            text_call = roll.compare_roll_with_math(dice[2].to_i, compare_with_math[4].to_i, compare_with_math[3], compare_with_math[2].to_i, compare_with_math[1])
           end
         end
       end
@@ -33,9 +33,9 @@ Telegram::Bot::Client.run(token) do |bot|
       if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
         mult_op = op[2].split(/(tm)/)
         if mult_op.length == 3
-          bot.api.send_message(chat_id: message.chat.id, text: roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i))
+          text_call = roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i)
         elsif mult_op.length == 1
-          bot.api.send_message(chat_id: message.chat.id, text: roll.roll_with_operation(dice[2].to_i, op[2].to_i, op[1]))
+          text_call = roll.roll_with_operation(dice[2].to_i, op[2].to_i, op[1])
         end
       end
     elsif compare.length == 3 and compare[1] == 'smt' or compare[1] == 'bgt'
@@ -43,16 +43,16 @@ Telegram::Bot::Client.run(token) do |bot|
       if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
         compare_multiple = compare[2].split(/(tm)/)
         if compare_multiple.length == 3
-          bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll(dice[2].to_i, compare_multiple[0].to_i, compare[1], compare_multiple[2].to_i))
+          text_call = roll.compare_roll(dice[2].to_i, compare_multiple[0].to_i, compare[1], compare_multiple[2].to_i)
         elsif compare_multiple.length == 1
-          bot.api.send_message(chat_id: message.chat.id, text: roll.compare_roll(dice[2].to_i, compare[2].to_i, compare[1]))
+          text_call = roll.compare_roll(dice[2].to_i, compare[2].to_i, compare[1])
         end
       end
     elsif critic_blunder_new[1] == 'eql' and critic_blunder_new.length == 3
       dice = critic_blunder_new[0].split(/(\s|d|n)/)
       if dice[0] == '/' and dice[1] == 'd' and dice[3] == 'n' and crbl.accepted_dices(dice[2].to_i) and dice.length == 5
         if dice[4] == 'cr' or dice[4] == 'bl'
-          bot.api.send_message(chat_id: message.chat.id, text: crbl.assign_new_critic_or_blunder(dice[2].to_i, critic_blunder_new[2], dice[4]))
+          text_call = crbl.assign_new_critic_or_blunder(dice[2].to_i, critic_blunder_new[2], dice[4])
         end
       end
     elsif crblst.length == 2 and crblst[1] == 'st'
@@ -60,29 +60,29 @@ Telegram::Bot::Client.run(token) do |bot|
       if crbl_validation.length == 2 and crbl_validation[1] == 'cr' or crbl_validation[1] == 'bl'
         dice = crbl_validation[0].split(/(d)/)
         if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
-          bot.api.send_message(chat_id: message.chat.id, text: crbl.critic_blunder_status(dice[2].to_i, crbl_validation[1]))
+          text_call = crbl.critic_blunder_status(dice[2].to_i, crbl_validation[1])
         end
       end
     elsif various_rolls[1] == 'tm' and various_rolls.length == 3
       dices = various_rolls[0].split(/(d)/)
       if dices[0] == '/' and dices[1] == 'd' and crbl.accepted_dices(dices[2].to_i) and dices.length == 3
-        bot.api.send_message(chat_id: message.chat.id, text: roll.multiple_rolls(dices[2].to_i, various_rolls[2].to_i))
+        text_call = roll.multiple_rolls(dices[2].to_i, various_rolls[2].to_i)
       end
     elsif one_roll[0] == '/' and one_roll[1] == 'd' and crbl.accepted_dices(one_roll[2].to_i) and one_roll.length == 3
-      bot.api.send_message(chat_id: message.chat.id, text: roll.single_roll(one_roll[2].to_i))
+      text_call = roll.single_roll(one_roll[2].to_i)
     end
 
     if new_dice.length == 7 and new_dice[0] == '/' and new_dice[1] == 'n' and new_dice[2] == '' and new_dice[3] == 'd' and new_dice[4] == '' and new_dice[5] == 'eql'
       unless crbl.accepted_dices(new_dice[6].to_i)
-        bot.api.send_message(chat_id: message.chat.id, text: crbl.new_dice_critic_blunder(new_dice[6].to_i))
+        text_call = crbl.new_dice_critic_blunder(new_dice[6].to_i)
       end
     end
 
     case message.text
     when '/start'
-      bot.api.send_message(chat_id: message.chat.id, text: 'This is an app to roll dices equiped for the needs of table roll playing games. Use /help to se the commands')
+      text_call = 'This is an app to roll dices equiped for the needs of table roll playing games. Use /help to se the commands'
     when '/glosary'
-      bot.api.send_message(chat_id: message.chat.id, text: "'d' stands for dice
+      text_call = "'d' stands for dice
 'bgt' stands for bigger roll_with_operation
 'smt' stands for smaller than
 'sub' stands for substraction
@@ -93,15 +93,15 @@ Telegram::Bot::Client.run(token) do |bot|
 'bl' stands fr blunder
 'st' stands for status
 'n' stands for new
-'eql' stands for equal")
+'eql' stands for equal"
     when '/help'
-      bot.api.send_message(chat_id: message.chat.id, text: "/d# To roll a dice, the number you put represents the number of faces of the dice (example: /d6).
+      text_call = "/d# To roll a dice, the number you put represents the number of faces of the dice (example: /d6).
 
 /d#add# To roll a dice adding a number and showing the result, you can change 'add' for different operators, such as 'sub', 'mult' and 'div' (example /d8sub3).
 
 /d#bgt# To check if your roll is bigger than a number you give, you can change 'bgt' for 'smt' to check if the roll is smaller (example: /d4smt2).
 
-/d#add#bgt To roll a dice adding a number and comparing if the result is bigger than the third given number, you can also change 'bgt' for 'smt' and the 'add' for the different operators (example: /d100mult2smt90)
+/d#add#bgt To roll a dice adding a number and comparing if the result is bigger than the third given number, you can also change 'bgt' for 'smt' and the 'add' for the different operators (example: /d100mult2smt130)
 
 tm# you can add tm and a number at the end of all the previous commands to run that roll the specifed times (examples /d6tm10, /d8add5tm3, /d10bgt6tm5, /d20add2bgt15tm4)
 
@@ -115,7 +115,8 @@ also you can put either '#to#' to add a range or instead just a number at the en
 /ndeql# To create a new dice, you can use all the above commands for the dice you create (example: /ndeql5)
 
 /glosary to open the abreveation meanings
-")
+"
     end
+    bot.api.send_message(chat_id: message.chat.id, text: text_call)
   end
 end
