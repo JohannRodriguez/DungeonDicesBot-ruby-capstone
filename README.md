@@ -35,6 +35,8 @@
 - Clone the repo in your computer using $ git clone git@github.com:JohannRodriguez/DungeonDicesBot-ruby-capstone.git
 - In your terminal cd in to your local copy of the repo on to bin directory.
 - Run the program by typing $ ruby main.rb
+- Have gem installed.
+- If you get a message like: 'cannot load such file -- telegram/bot' run $ gem install telegram-bot-ruby in your terminal.
 
 ## Authors
 

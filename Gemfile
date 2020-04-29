@@ -1,3 +1,3 @@
 source 'https://rubygems.org' do
-  gem 'nokogiri'
+  gem 'telegram-bot-ruby'
 end
