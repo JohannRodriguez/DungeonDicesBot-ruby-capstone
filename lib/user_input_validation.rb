@@ -51,7 +51,6 @@ also you can put either '#to#' to add a range or instead just a number at the en
     compare_with_math_roll
   end
   # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Layout/EmptyLineBetweenDefs
   def compare_with_math_roll
     compare_with_math = @input.split(/(\s|smt|bgt|add|sub|mult|div)/)
     dice = compare_with_math[0].split(/(d)/)
@@ -143,4 +142,5 @@ also you can put either '#to#' to add a range or instead just a number at the en
   def invalid_command
     "I'm sorry, but I couldn't recognize the command you are trying to give me"
   end
+  # rubocop:enable Layout/EmptyLineBetweenDefs
 end
