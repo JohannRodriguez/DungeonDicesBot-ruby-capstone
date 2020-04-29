@@ -52,9 +52,9 @@ also you can put either '#to#' to add a range or instead just a number at the en
 
   def compare_with_math_roll
     compare_with_math = @input.split(/(\s|smt|bgt|add|sub|mult|div)/)
+    dice = compare_with_math[0].split(/(d)/)
     if compare_with_math.length == 5 and compare_with_math[3] == 'smt' or compare_with_math[3] == 'bgt'
       if compare_with_math[1] == 'add' or compare_with_math[1] == 'sub' or compare_with_math[1] == 'mult' or compare_with_math[1] == 'div'
-        dice = compare_with_math[0].split(/(d)/)
         if dice[0] == '/' and dice[1] == 'd' and @criticblunder.accepted_dices(dice[2].to_i) and dice.length == 3
           compare_multiple_with_math = compare_with_math[4].split(/(tm)/)
           return @make_roll.compare_roll_with_math(dice[2].to_i, compare_with_math[4].to_i, compare_with_math[3], compare_with_math[2].to_i, compare_with_math[1], compare_multiple_with_math[2].to_i) if compare_multiple_with_math.length == 3
@@ -67,8 +67,8 @@ also you can put either '#to#' to add a range or instead just a number at the en
 
   def operator_roll
     op = @input.split(/(\s|add|sub|mult|div)/)
+    dice = op[0].split(/(d)/)
     if op.length == 3 and op[1] == 'add' or op[1] == 'sub' or op[1] == 'mult' or op[1] == 'div'
-      dice = op[0].split(/(d)/)
       if dice[0] == '/' and dice[1] == 'd' and @criticblunder.accepted_dices(dice[2].to_i) and dice.length == 3
         mult_op = op[2].split(/(tm)/)
         return @make_roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i)if mult_op.length == 3
@@ -80,8 +80,8 @@ also you can put either '#to#' to add a range or instead just a number at the en
 
   def compare_roll
     compare = @input.split(/(\s|smt|bgt)/)
+    dice = compare[0].split(/(d)/)
     if compare.length == 3 and compare[1] == 'smt' or compare[1] == 'bgt'
-      dice = compare[0].split(/(d)/)
       if dice[0] == '/' and dice[1] == 'd' and @criticblunder.accepted_dices(dice[2].to_i) and dice.length == 3
         compare_multiple = compare[2].split(/(tm)/)
         return @make_roll.compare_roll(dice[2].to_i, compare_multiple[0].to_i, compare[1], compare_multiple[2].to_i) if compare_multiple.length == 3
@@ -93,8 +93,8 @@ also you can put either '#to#' to add a range or instead just a number at the en
 
   def new_critic_blunder
     critic_blunder_new = @input.split(/(eql)/)
+    dice = critic_blunder_new[0].split(/(\s|d|n)/)
     if critic_blunder_new[1] == 'eql' and critic_blunder_new.length == 3
-      dice = critic_blunder_new[0].split(/(\s|d|n)/)
       if dice[0] == '/' and dice[1] == 'd' and dice[3] == 'n' and @criticblunder.accepted_dices(dice[2].to_i) and dice.length == 5
         return @criticblunder.assign_new_critic_or_blunder(dice[2].to_i, critic_blunder_new[2], dice[4]) if dice[4] == 'cr' or dice[4] == 'bl'
       end
@@ -104,8 +104,8 @@ also you can put either '#to#' to add a range or instead just a number at the en
 
   def check_critic_blunder
     crblst = @input.split(/(st)/)
+    crbl_validation = crblst[0].split(/(\s|cr|bl|st)/)
     if crblst.length == 2 and crblst[1] == 'st'
-      crbl_validation = crblst[0].split(/(\s|cr|bl|st)/)
       if crbl_validation.length == 2 and crbl_validation[1] == 'cr' or crbl_validation[1] == 'bl'
         dice = crbl_validation[0].split(/(d)/)
         return @criticblunder.critic_blunder_status(dice[2].to_i, crbl_validation[1]) if dice[0] == '/' and dice[1] == 'd' and @criticblunder.accepted_dices(dice[2].to_i) and dice.length == 3
@@ -116,8 +116,8 @@ also you can put either '#to#' to add a range or instead just a number at the en
 
   def rolls
     various_rolls = @input.split(/(tm)/)
+    dices = various_rolls[0].split(/(d)/)
     if various_rolls[1] == 'tm' and various_rolls.length == 3
-      dices = various_rolls[0].split(/(d)/)
       return @make_roll.multiple_rolls(dices[2].to_i, various_rolls[2].to_i) if dices[0] == '/' and dices[1] == 'd' and @criticblunder.accepted_dices(dices[2].to_i) and dices.length == 3
     end
     roll
