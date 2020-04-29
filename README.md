@@ -34,7 +34,7 @@
 - First you need to have Ruby
 - Clone the repo in your computer using $ git clone git@github.com:JohannRodriguez/DungeonDicesBot-ruby-capstone.git
 - In your terminal cd in to your local copy of the repo on to bin directory.
-- Run the progrma by typing $ ruby main.rb
+- Run the program by typing $ ruby main.rb
 
 ## Authors
 
