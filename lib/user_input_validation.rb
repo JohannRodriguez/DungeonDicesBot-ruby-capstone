@@ -1,14 +1,13 @@
 # All methods in this class splits the input passed and check if it fulfill certain parameters that triggers certain parts of the code
 class UserIpnut
   attr_accessor :input
-
+  
+  # rubocop:disable Metrics/MethodLength
   def initialize(message)
     @input = message
     @criticblunder = Criticblunder.new
     @make_roll = Rolls.new
   end
-  # rubocop:disable Metrics/MethodLength
-  
   def check_input
     case @input
     when '/start'
