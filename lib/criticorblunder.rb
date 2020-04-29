@@ -9,7 +9,7 @@ class Criticblunder
   attr_accessor :assigner_2
   attr_accessor :assigner_text_1
   attr_accessor :assigner_text_2
-
+  # rubocop:disable Style/RedundantSelf
   def assign_new_critic_or_blunder(dice_type, values, type_of_assign)
     return "Invalid assigner, try to use either 'cr' or 'bl'" unless type_of_assign == 'cr' or type_of_assign == 'bl'
 
@@ -23,7 +23,7 @@ class Criticblunder
     return range_validation(new_values, dice_type_index) unless self.assigner_2[dice_type_index][0].nil?
 
     critic_or_blunder_new_values(new_values, dice_type_index)
-    return "Your #{self.assigner_text_1} roll must be within a range from 1 to #{self.assigner_1[dice_type_index][2]}" if self.assigner_1[dice_type_index][0].nil? or
+    return "Your #{self.assigner_text_1} roll must be within a range from 1 to #{self.assigner_1[dice_type_index][2]}" if self.assigner_1[dice_type_index][0].nil? or self.assigner_1[dice_type_index][0].nil?
 
     return "The new value for D#{dice_type} #{self.assigner_text_1} is now #{self.assigner_1[dice_type_index][0]}" if self.assigner_1[dice_type_index][0] == self.assigner_1[dice_type_index][1]
     "The new #{self.assigner_text_1} range for D#{dice_type} goes from #{self.assigner_1[dice_type_index][0]} to #{self.assigner_1[dice_type_index][1]}"
@@ -70,6 +70,7 @@ class Criticblunder
       self.assigner_text_2 = 'critic'
     end
   end
+  # rubocop:enable Style/RedundantSelf
 
   def critic_blunder_status(dice_type, type_of_assign)
     dice_type_index = dice_index(dice_type)

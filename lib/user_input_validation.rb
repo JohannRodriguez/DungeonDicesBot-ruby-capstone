@@ -1,4 +1,4 @@
-#All methods in this class splits the input passed and check if it fulfill certain parameters that triggers certain parts of the code
+# All methods in this class splits the input passed and check if it fulfill certain parameters that triggers certain parts of the code
 class UserIpnut
   attr_accessor :input
 
@@ -7,7 +7,7 @@ class UserIpnut
     @criticblunder = Criticblunder.new
     @make_roll = Rolls.new
   end
-
+# rubocop:disable Metrics/MethodLength
   def check_input
     case @input
     when '/start'
@@ -50,6 +50,7 @@ also you can put either '#to#' to add a range or instead just a number at the en
     end
     compare_with_math_roll
   end
+  # rubocop:enable Metrics/MethodLength
 
   def compare_with_math_roll
     compare_with_math = @input.split(/(\s|smt|bgt|add|sub|mult|div)/)
@@ -72,7 +73,7 @@ also you can put either '#to#' to add a range or instead just a number at the en
     if op.length == 3 and op[1] == 'add' or op[1] == 'sub' or op[1] == 'mult' or op[1] == 'div'
       if dice[0] == '/' and dice[1] == 'd' and @criticblunder.accepted_dices(dice[2].to_i) and dice.length == 3
         mult_op = op[2].split(/(tm)/)
-        return @make_roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i)if mult_op.length == 3
+        return @make_roll.roll_with_operation(dice[2].to_i, mult_op[0].to_i, op[1], mult_op[2].to_i) if mult_op.length == 3
         return @make_roll.roll_with_operation(dice[2].to_i, op[2].to_i, op[1]) if mult_op.length == 1
       end
     end
@@ -127,6 +128,7 @@ also you can put either '#to#' to add a range or instead just a number at the en
   def roll
     one_roll = @input.split(/(d)/)
     return @make_roll.single_roll(one_roll[2].to_i) if one_roll[0] == '/' and one_roll[1] == 'd' and @criticblunder.accepted_dices(one_roll[2].to_i) and one_roll.length == 3
+
     created_dice
   end
 
@@ -135,11 +137,10 @@ also you can put either '#to#' to add a range or instead just a number at the en
     if new_dice.length == 7 and new_dice[0] == '/' and new_dice[1] == 'n' and new_dice[2] == '' and new_dice[3] == 'd' and new_dice[4] == '' and new_dice[5] == 'eql'
       return @criticblunder.new_dice_critic_blunder(new_dice[6].to_i) unless @criticblunder.accepted_dices(new_dice[6].to_i)
     end
-  invalid_command
+    invalid_command
   end
 
   def invalid_command
-    return "I'm sorry, but I couldn't recognize the command you are trying to give me"
+    "I'm sorry, but I couldn't recognize the command you are trying to give me"
   end
-
 end
