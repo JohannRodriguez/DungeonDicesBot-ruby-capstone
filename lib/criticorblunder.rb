@@ -97,9 +97,8 @@ class Criticblunder
   end
 
   private
-  
-  # rubocop:enable Metrics/AbcSize
 
+  # rubocop:enable Metrics/AbcSize
   def critic_or_blunder_none_value_set(value, dice_value, dtp)
     self.assigner_1[dtp][0] = nil
     self.assigner_1[dtp][1] = nil
