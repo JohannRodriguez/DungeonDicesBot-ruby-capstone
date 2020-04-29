@@ -1,3 +1,4 @@
+#All methods in this class splits the input passed and check if it fulfill certain parameters that triggers certain parts of the code
 class UserIpnut
   attr_accessor :input
 
