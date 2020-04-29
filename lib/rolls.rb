@@ -45,7 +45,7 @@ class Rolls
       end
       return rolls_comparison_array.join
     end
-    return "D#{dice_value} #{operator_text} #{operation_value} #{comparer_text} than #{comparison} your result is: \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}  #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}, #{@@calc.compare(@@calc.operation(roll, operation_value, operator), comparison, comparer)}"
+    "D#{dice_value} #{operator_text} #{operation_value} #{comparer_text} than #{comparison} your result is: \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}  #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}, #{@@calc.compare(@@calc.operation(roll, operation_value, operator), comparison, comparer)}"
   end
 
   def roll_with_operation(dice_value, operation_value, operator, multiple = nil)

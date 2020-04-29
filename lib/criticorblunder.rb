@@ -14,7 +14,7 @@ class Criticblunder
     return "Invalid assigner, try to use either 'cr' or 'bl'" unless type_of_assign == 'cr' or type_of_assign == 'bl'
 
     dice_type_index = dice_index(dice_type)
-    set_value_for_assigners(type_of_assign)
+    create_value_for_assigners(type_of_assign)
     return critic_or_blunder_none_value_set(values, dice_type, dice_type_index) if values == 'none'
 
     new_values = values.split('to')
@@ -26,6 +26,7 @@ class Criticblunder
     return "Your #{self.assigner_text_1} roll must be within a range from 1 to #{self.assigner_1[dice_type_index][2]}" if self.assigner_1[dice_type_index][0].nil? or self.assigner_1[dice_type_index][0].nil?
 
     return "The new value for D#{dice_type} #{self.assigner_text_1} is now #{self.assigner_1[dice_type_index][0]}" if self.assigner_1[dice_type_index][0] == self.assigner_1[dice_type_index][1]
+
     "The new #{self.assigner_text_1} range for D#{dice_type} goes from #{self.assigner_1[dice_type_index][0]} to #{self.assigner_1[dice_type_index][1]}"
   end
 
@@ -39,6 +40,7 @@ class Criticblunder
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def critic_or_blunder_new_values(new_values, dice_type_index)
     self.assigner_1[dice_type_index][0] = new_values[0].to_i if new_values[0].to_i.between?(1, self.assigner_1[dice_type_index][2])
     self.assigner_1[dice_type_index][1] = new_values[1].to_i if new_values.length > 1 and new_values[1].to_i.between?(1, self.assigner_1[dice_type_index][2])
@@ -49,6 +51,7 @@ class Criticblunder
       self.assigner_1[dice_type_index][0], self.assigner_1[dice_type_index][1] = self.assigner_1[dice_type_index][1], self.assigner_1[dice_type_index][0] if self.assigner_1[dice_type_index][0] > self.assigner_1[dice_type_index][1]
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def critic_or_blunder_none_value_set(value, dice_value, dtp)
     self.assigner_1[dtp][0] = nil
@@ -56,7 +59,7 @@ class Criticblunder
     "#{self.assigner_text_1.capitalize} D#{dice_value} value setted to none"
   end
 
-  def set_value_for_assigners(type_of_assign_validation)
+  def create_value_for_assigners(type_of_assign_validation)
     if type_of_assign_validation == 'cr'
       self.assigner_1 = @@critic
       self.assigner_2 = @@blunder

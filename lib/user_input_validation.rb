@@ -7,7 +7,8 @@ class UserIpnut
     @criticblunder = Criticblunder.new
     @make_roll = Rolls.new
   end
-# rubocop:disable Metrics/MethodLength
+  
+  # rubocop:disable Metrics/MethodLength
   def check_input
     case @input
     when '/start'
