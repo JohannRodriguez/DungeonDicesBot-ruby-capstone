@@ -4,14 +4,14 @@ class Rolls
   @@calc = Calcs.new
   def single_roll(dice_value)
     roll = rand(1..dice_value)
-    "D#{dice_value} rolled, your roll is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}"
+    "D#{dice_value} rolled, your roll is: \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}"
   end
 
   def multiple_rolls(dice_value, dices)
     rolls_array = ["D#{dice_value} #{dices} rolled, results:"]
     dices.times do
       roll = rand(1..dice_value)
-      rolls_array.push("\n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}")
+      rolls_array.push("\n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}")
     end
     rolls_array.join
   end
@@ -24,11 +24,11 @@ class Rolls
       rolls_comparison_array = ["D#{dice_value} #{comparer_text} than #{comparison}, results:"]
       multiple.times do
         roll = rand(1..dice_value)
-        rolls_comparison_array.push("\n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}")
+        rolls_comparison_array.push("\n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}")
       end
       return rolls_comparison_array.join
     end
-    "D#{dice_value} #{comparer_text} than #{comparison}, your roll is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}"
+    "D#{dice_value} #{comparer_text} than #{comparison}, your roll is: \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}, #{@@calc.compare(roll, comparison, comparer)}"
   end
 
   def compare_roll_with_math(dice_value, comparison, comparer, operation_value, operator, multiple = nil)
@@ -41,11 +41,11 @@ class Rolls
       rolls_comparison_array = ["#{multiple} times D#{dice_value} #{operator_text} #{operation_value} #{comparer_text} than #{comparison}, your results are:"]
       multiple.times do
         roll = rand(1..dice_value)
-        rolls_comparison_array.push(" \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}  #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}, #{@@calc.compare(@@calc.operation(roll, operation_value, operator), comparison, comparer)}")
+        rolls_comparison_array.push(" \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}  #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}, #{@@calc.compare(@@calc.operation(roll, operation_value, operator), comparison, comparer)}")
       end
       return rolls_comparison_array.join
     end
-    return "D#{dice_value} #{operator_text} #{operation_value} #{comparer_text} than #{comparison} your result is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)}  #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}, #{@@calc.compare(@@calc.operation(roll, operation_value, operator), comparison, comparer)}"
+    return "D#{dice_value} #{operator_text} #{operation_value} #{comparer_text} than #{comparison} your result is: \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}  #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}, #{@@calc.compare(@@calc.operation(roll, operation_value, operator), comparison, comparer)}"
   end
 
   def roll_with_operation(dice_value, operation_value, operator, multiple = nil)
@@ -57,11 +57,11 @@ class Rolls
       multiple_operator_array = [" #{multiple} times D#{dice_value} #{operator_text} #{operation_value}, your results are:"]
       multiple.times do
         roll = rand(1..dice_value)
-        multiple_operator_array.push(" \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)} #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}")
+        multiple_operator_array.push(" \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)} #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}")
       end
       return multiple_operator_array.join
     end
-    "D#{dice_value} #{operator_text} #{operation_value}, your result is: \n #{roll}#{@@crbl.cr_bl_roll(dice_value, roll)} #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}"
+    "D#{dice_value} #{operator_text} #{operation_value}, your result is: \n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)} #{operator_symbol} #{operation_value} = #{@@calc.operation(roll, operation_value, operator)}"
   end
 
   def assigners(cm_txt = nil, opr = nil)

@@ -10,19 +10,19 @@ class Criticblunder
   attr_accessor :assigner_text_1
   attr_accessor :assigner_text_2
 
-  def cr_bl_assign(dice_type, values, type_of_assign)
+  def assign_new_critic_or_blunder(dice_type, values, type_of_assign)
     return "Invalid assigner, try to use either 'cr' or 'bl'" unless type_of_assign == 'cr' or type_of_assign == 'bl'
 
     dice_type_index = dice_index(dice_type)
-    assigners_validation(type_of_assign)
-    return value_none(values, dice_type, dice_type_index) if values == 'none'
+    set_value_for_assigners(type_of_assign)
+    return critic_or_blunder_none_value_set(values, dice_type, dice_type_index) if values == 'none'
 
     new_values = values.split('to')
     return 'You can only assign a maximum of two values' if new_values.length > 2
 
     return range_validation(new_values, dice_type_index) unless self.assigner_2[dice_type_index][0].nil?
 
-    set_values_for_assigner(new_values, dice_type_index)
+    critic_or_blunder_new_values(new_values, dice_type_index)
     return "Your #{self.assigner_text_1} roll must be within a range from 1 to #{self.assigner_1[dice_type_index][2]}" if self.assigner_1[dice_type_index][0].nil? or
 
     return "The new value for D#{dice_type} #{self.assigner_text_1} is now #{self.assigner_1[dice_type_index][0]}" if self.assigner_1[dice_type_index][0] == self.assigner_1[dice_type_index][1]
@@ -39,7 +39,7 @@ class Criticblunder
     end
   end
 
-  def set_values_for_assigner(new_values, dice_type_index)
+  def critic_or_blunder_new_values(new_values, dice_type_index)
     self.assigner_1[dice_type_index][0] = new_values[0].to_i if new_values[0].to_i.between?(1, self.assigner_1[dice_type_index][2])
     self.assigner_1[dice_type_index][1] = new_values[1].to_i if new_values.length > 1 and new_values[1].to_i.between?(1, self.assigner_1[dice_type_index][2])
     self.assigner_1[dice_type_index][1] = self.assigner_1[dice_type_index][0] if new_values.length == 1
@@ -50,13 +50,13 @@ class Criticblunder
     end
   end
 
-  def value_none(value, dice_value, dtp)
+  def critic_or_blunder_none_value_set(value, dice_value, dtp)
     self.assigner_1[dtp][0] = nil
     self.assigner_1[dtp][1] = nil
     "#{self.assigner_text_1.capitalize} D#{dice_value} value setted to none"
   end
 
-  def assigners_validation(type_of_assign_validation)
+  def set_value_for_assigners(type_of_assign_validation)
     if type_of_assign_validation == 'cr'
       self.assigner_1 = @@critic
       self.assigner_2 = @@blunder
@@ -71,7 +71,7 @@ class Criticblunder
     end
   end
 
-  def cr_bl_status(dice_type, type_of_assign)
+  def critic_blunder_status(dice_type, type_of_assign)
     dice_type_index = dice_index(dice_type)
     assigner = @@critic if type_of_assign == 'cr'
     assigner = @@blunder if type_of_assign == 'bl'
@@ -84,14 +84,14 @@ class Criticblunder
     "The #{type_of_assign_text} range for D#{dice_type} goes from #{assigner[dice_type_index][0]} to #{assigner[dice_type_index][1]}"
   end
 
-  def cr_bl_roll(dice_type, roll)
+  def critic_blunder_roll(dice_type, roll)
     dice_type_index = dice_index(dice_type)
     return ' CRITIC ROLL!' if !@@critic[dice_type_index][0].nil? and roll.between?(@@critic[dice_type_index][0], @@critic[dice_type_index][1])
 
     return ' BLUNDER' if !@@blunder[dice_type_index][0].nil? and roll.between?(@@blunder[dice_type_index][0], @@blunder[dice_type_index][1])
   end
 
-  def new_cr_bl(dice)
+  def new_dice_critic_blunder(dice)
     @@critic.push([nil, nil, dice])
     @@blunder.push([nil, nil, dice])
     dice_index(nil, dice)

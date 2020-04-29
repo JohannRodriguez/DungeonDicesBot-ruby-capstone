@@ -52,7 +52,7 @@ Telegram::Bot::Client.run(token) do |bot|
       dice = critic_blunder_new[0].split(/(\s|d|n)/)
       if dice[0] == '/' and dice[1] == 'd' and dice[3] == 'n' and crbl.accepted_dices(dice[2].to_i) and dice.length == 5
         if dice[4] == 'cr' or dice[4] == 'bl'
-          bot.api.send_message(chat_id: message.chat.id, text: crbl.cr_bl_assign(dice[2].to_i, critic_blunder_new[2], dice[4]))
+          bot.api.send_message(chat_id: message.chat.id, text: crbl.assign_new_critic_or_blunder(dice[2].to_i, critic_blunder_new[2], dice[4]))
         end
       end
     elsif crblst.length == 2 and crblst[1] == 'st'
@@ -60,7 +60,7 @@ Telegram::Bot::Client.run(token) do |bot|
       if crbl_validation.length == 2 and crbl_validation[1] == 'cr' or crbl_validation[1] == 'bl'
         dice = crbl_validation[0].split(/(d)/)
         if dice[0] == '/' and dice[1] == 'd' and crbl.accepted_dices(dice[2].to_i) and dice.length == 3
-          bot.api.send_message(chat_id: message.chat.id, text: crbl.cr_bl_status(dice[2].to_i, crbl_validation[1]))
+          bot.api.send_message(chat_id: message.chat.id, text: crbl.critic_blunder_status(dice[2].to_i, crbl_validation[1]))
         end
       end
     elsif various_rolls[1] == 'tm' and various_rolls.length == 3
@@ -74,7 +74,7 @@ Telegram::Bot::Client.run(token) do |bot|
 
     if new_dice.length == 7 and new_dice[0] == '/' and new_dice[1] == 'n' and new_dice[2] == '' and new_dice[3] == 'd' and new_dice[4] == '' and new_dice[5] == 'eql'
       unless crbl.accepted_dices(new_dice[6].to_i)
-        bot.api.send_message(chat_id: message.chat.id, text: crbl.new_cr_bl(new_dice[6].to_i))
+        bot.api.send_message(chat_id: message.chat.id, text: crbl.new_dice_critic_blunder(new_dice[6].to_i))
       end
     end
 
@@ -106,7 +106,7 @@ Telegram::Bot::Client.run(token) do |bot|
 tm# you can add tm and a number at the end of all the previous commands to run that roll the specifed times (examples /d6tm10, /d8add5tm3, /d10bgt6tm5, /d20add2bgt15tm4)
 
 
-/d#crst To check if a critic value is assign to a dice, if your roll is inside the same as that value, the program will notify you, you can change 'cr' to 'bl' to check for the blunder cr_bl_status (example /d4blst)
+/d#crst To check if a critic value is assign to a dice, if your roll is inside the same as that value, the program will notify you, you can change 'cr' to 'bl' to check for the blunder critic_blunder_status (example /d4blst)
 
 /d#ncreql#to# To assign a critic value for a dice that doesn't have one, or change and existing one, you can change the 'cr' to 'bl' to change the blunder value,
 also you can put either '#to#' to add a range or instead just a number at the end to add a single value (example /d6nbleql1, /d8ncreql7to8)
