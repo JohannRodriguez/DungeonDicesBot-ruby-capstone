@@ -51,29 +51,6 @@ class Criticblunder
       self.assigner_1[dice_type_index][0], self.assigner_1[dice_type_index][1] = self.assigner_1[dice_type_index][1], self.assigner_1[dice_type_index][0] if self.assigner_1[dice_type_index][0] > self.assigner_1[dice_type_index][1]
     end
   end
-  # rubocop:enable Metrics/AbcSize
-
-  def critic_or_blunder_none_value_set(value, dice_value, dtp)
-    self.assigner_1[dtp][0] = nil
-    self.assigner_1[dtp][1] = nil
-    "#{self.assigner_text_1.capitalize} D#{dice_value} value setted to none"
-  end
-
-  def create_value_for_assigners(type_of_assign_validation)
-    if type_of_assign_validation == 'cr'
-      self.assigner_1 = @@critic
-      self.assigner_2 = @@blunder
-      self.assigner_text_1 = 'critic'
-      self.assigner_text_2 = 'blunder'
-    end
-    if type_of_assign_validation == 'bl'
-      self.assigner_1 = @@blunder
-      self.assigner_2 = @@critic
-      self.assigner_text_1 = 'blunder'
-      self.assigner_text_2 = 'critic'
-    end
-  end
-  # rubocop:enable Style/RedundantSelf
 
   def critic_blunder_status(dice_type, type_of_assign)
     dice_type_index = dice_index(dice_type)
@@ -118,4 +95,29 @@ class Criticblunder
     return true if @@valid_dice.include?(dice) and !dice.nil?
     return false unless !dice.nil?
   end
+
+  private
+  # rubocop:enable Metrics/AbcSize
+
+  def critic_or_blunder_none_value_set(value, dice_value, dtp)
+    self.assigner_1[dtp][0] = nil
+    self.assigner_1[dtp][1] = nil
+    "#{self.assigner_text_1.capitalize} D#{dice_value} value setted to none"
+  end
+
+  def create_value_for_assigners(type_of_assign_validation)
+    if type_of_assign_validation == 'cr'
+      self.assigner_1 = @@critic
+      self.assigner_2 = @@blunder
+      self.assigner_text_1 = 'critic'
+      self.assigner_text_2 = 'blunder'
+    end
+    if type_of_assign_validation == 'bl'
+      self.assigner_1 = @@blunder
+      self.assigner_2 = @@critic
+      self.assigner_text_1 = 'blunder'
+      self.assigner_text_2 = 'critic'
+    end
+  end
+  # rubocop:enable Style/RedundantSelf
 end
