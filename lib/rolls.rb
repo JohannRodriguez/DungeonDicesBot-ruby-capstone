@@ -8,7 +8,7 @@ class Rolls
   end
 
   def multiple_rolls(dice_value, dices)
-    rolls_array = ["D#{dice_value} #{dices} rolled, results:"]
+    rolls_array = ["#{dices} times D#{dice_value}rolled, results:"]
     dices.times do
       roll = rand(1..dice_value)
       rolls_array.push("\n #{roll}#{@@crbl.critic_blunder_roll(dice_value, roll)}")
