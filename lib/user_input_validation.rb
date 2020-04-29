@@ -1,13 +1,13 @@
 # All methods in this class splits the input passed and check if it fulfill certain parameters that triggers certain parts of the code
 class UserIpnut
   attr_accessor :input
-  
   # rubocop:disable Metrics/MethodLength
   def initialize(message)
     @input = message
     @criticblunder = Criticblunder.new
     @make_roll = Rolls.new
   end
+  # rubocop:disable Layout/EmptyLineBetweenDefs
   def check_input
     case @input
     when '/start'
@@ -51,7 +51,7 @@ also you can put either '#to#' to add a range or instead just a number at the en
     compare_with_math_roll
   end
   # rubocop:enable Metrics/MethodLength
-
+  # rubocop:enable Layout/EmptyLineBetweenDefs
   def compare_with_math_roll
     compare_with_math = @input.split(/(\s|smt|bgt|add|sub|mult|div)/)
     dice = compare_with_math[0].split(/(d)/)
